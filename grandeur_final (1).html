@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Grandeur — Men's Luxury</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#b8986a;--gold-light:#d4b896;--cream:#faf8f4;--charcoal:#1a1814;--warm-gray:#6b6560;--border:#e8e2d8}
+html{scroll-behavior:smooth}
+body{font-family:'Jost',sans-serif;background:#fff;color:var(--charcoal);overflow-x:hidden}
+
+nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:20px 60px;background:rgba(255,255,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:22px;letter-spacing:6px;text-transform:uppercase;color:var(--charcoal);flex-shrink:0}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--warm-gray);text-decoration:none;transition:color 0.3s}
+.nav-links a:hover{color:var(--charcoal)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-right a{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--warm-gray);text-decoration:none;transition:color 0.3s;white-space:nowrap}
+.nav-right a:hover{color:var(--charcoal)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--charcoal);transition:all 0.3s}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(250,248,244,0.98);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:var(--charcoal);text-decoration:none;letter-spacing:1px;transition:color 0.3s}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-close{position:absolute;top:24px;right:24px;font-size:28px;cursor:pointer;color:var(--warm-gray);background:none;border:none;font-family:'Jost',sans-serif}
+
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:90vh}
+.hero-left{background:var(--cream);display:flex;flex-direction:column;justify-content:center;padding:80px 60px}
+.hero-eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:68px;font-weight:300;line-height:1.05;letter-spacing:-1px;margin-bottom:28px}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-desc{font-size:13px;line-height:1.9;color:var(--warm-gray);max-width:340px;margin-bottom:44px;font-weight:300;letter-spacing:0.4px}
+.hero-cta-row{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.btn-primary{background:var(--charcoal);color:#fff;padding:15px 34px;font-size:10px;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;transition:background 0.3s;font-family:'Jost',sans-serif}
+.btn-primary:hover{background:var(--gold)}
+.btn-ghost{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--charcoal);cursor:pointer;border-bottom:1px solid var(--charcoal);padding-bottom:2px;transition:all 0.3s;text-decoration:none}
+.btn-ghost:hover{color:var(--gold);border-color:var(--gold)}
+.hero-right{background:#1a1814;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;min-height:400px}
+.hero-monogram{font-family:'Cormorant Garamond',serif;font-size:260px;color:rgba(184,152,106,0.08);font-weight:300;line-height:1;user-select:none}
+.hero-badge{position:absolute;bottom:32px;right:32px;border:1px solid rgba(184,152,106,0.35);padding:12px 20px;text-align:right}
+.hero-badge-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);margin-bottom:4px}
+.hero-badge-val{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:300;color:#fff;letter-spacing:2px}
+
+.marquee-bar{background:var(--charcoal);padding:13px 0;overflow:hidden;white-space:nowrap}
+.marquee-inner{display:inline-flex;animation:marquee 22s linear infinite}
+.marquee-item{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.45);padding:0 36px}
+.marquee-dot{color:var(--gold)}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+.categories{padding:80px 60px;background:#fff}
+.section-label{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;letter-spacing:-1px;line-height:1.1;margin-bottom:48px}
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.cat-card{background:var(--cream);padding:32px 20px;text-align:center;cursor:pointer;transition:all 0.3s;border:1px solid transparent;position:relative;overflow:hidden}
+.cat-card:hover{border-color:var(--gold);background:#fff}
+.cat-icon-ring{width:60px;height:60px;border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;transition:all 0.3s;color:var(--warm-gray);font-size:20px}
+.cat-card:hover .cat-icon-ring{border-color:var(--gold);color:var(--gold)}
+.cat-name{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:var(--charcoal);margin-bottom:5px}
+.cat-count{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--warm-gray)}
+.cat-arrow{position:absolute;bottom:14px;right:18px;font-size:15px;color:var(--gold);opacity:0;transition:opacity 0.3s}
+.cat-card:hover .cat-arrow{opacity:1}
+
+.aboutus{background:var(--charcoal);padding:80px 60px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.about-quote{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;line-height:1.15;color:#fff;letter-spacing:-0.5px}
+.about-quote em{font-style:italic;color:var(--gold)}
+.about-eyebrow{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.about-heading{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:#fff;margin-bottom:18px;line-height:1.25}
+.about-body{font-size:13px;color:rgba(255,255,255,0.48);line-height:1.9;font-weight:300;letter-spacing:0.3px;margin-bottom:14px}
+.about-divider{width:40px;height:1px;background:var(--gold);margin:24px 0}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:300;color:var(--gold);line-height:1}
+.stat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:4px}
+
+.pillars{padding:80px 60px;background:var(--cream)}
+.pillars-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:48px}
+.pillar{background:#fff;padding:44px 32px;border-top:3px solid transparent;transition:border-color 0.3s}
+.pillar:hover{border-color:var(--gold)}
+.pillar-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:rgba(184,152,106,0.2);line-height:1;margin-bottom:18px}
+.pillar-title{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;color:var(--charcoal);margin-bottom:10px}
+.pillar-text{font-size:13px;color:var(--warm-gray);line-height:1.85;font-weight:300;letter-spacing:0.3px}
+
+.connect{background:var(--charcoal);padding:80px 60px}
+.connect-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.connect-title{font-family:'Cormorant Garamond',serif;font-size:44px;font-weight:300;color:#fff;line-height:1.1;margin-bottom:14px}
+.connect-sub{font-size:13px;color:rgba(255,255,255,0.42);font-weight:300;line-height:1.8;letter-spacing:0.3px}
+.connect-links{display:flex;flex-direction:column;gap:14px}
+.connect-btn{display:flex;align-items:center;gap:16px;padding:18px 24px;border:1px solid rgba(255,255,255,0.12);color:#fff;text-decoration:none;transition:all 0.3s}
+.connect-btn:hover{border-color:var(--gold);background:rgba(184,152,106,0.06)}
+.connect-btn-icon{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.wa-icon{background:#25d366}
+.ig-icon{background:#c13584}
+.connect-btn-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.connect-btn-name{font-size:14px;font-weight:400;letter-spacing:0.5px}
+.connect-btn-arrow{margin-left:auto;color:rgba(255,255,255,0.3);font-size:18px;transition:color 0.3s}
+.connect-btn:hover .connect-btn-arrow{color:var(--gold)}
+
+footer{background:#0d0b09;padding:52px 60px 0}
+.footer-top{display:grid;grid-template-columns:1fr 1fr;gap:48px;padding-bottom:40px;border-bottom:1px solid #1e1b17}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:24px;letter-spacing:5px;text-transform:uppercase;color:#fff;margin-bottom:12px}
+.footer-tagline{font-size:11px;color:rgba(255,255,255,0.25);line-height:1.8;font-weight:300;margin-bottom:20px}
+.footer-contact-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
+.footer-contact-item i{color:var(--gold);font-size:14px;margin-top:2px;flex-shrink:0}
+.footer-contact-item span, .footer-contact-item a{font-size:11px;color:rgba(255,255,255,0.32);line-height:1.6;font-weight:300;text-decoration:none;transition:color 0.3s}
+.footer-contact-item a:hover{color:rgba(255,255,255,0.6)}
+.footer-right{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.footer-col-title{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.footer-info-item{margin-bottom:12px}
+.footer-info-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:3px}
+.footer-info-val{font-size:12px;color:rgba(255,255,255,0.4);font-family:'Cormorant Garamond',serif;letter-spacing:0.5px}
+.footer-bottom{padding:20px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:0.5px}
+.footer-tech{font-size:10px;color:rgba(255,255,255,0.15);letter-spacing:0.5px}
+.footer-social{display:flex;gap:12px}
+.footer-social a{width:32px;height:32px;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.28);text-decoration:none;font-size:14px;transition:all 0.3s}
+.footer-social a:hover{border-color:var(--gold);color:var(--gold)}
+
+@media(max-width:1024px){
+  .cat-grid{grid-template-columns:repeat(3,1fr)}
+  .aboutus{gap:48px}
+  .connect-inner{gap:48px}
+}
+@media(max-width:768px){
+  nav{padding:18px 24px}
+  .nav-links,.nav-right{display:none}
+  .hamburger{display:flex}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{padding:60px 24px}
+  .hero-title{font-size:48px}
+  .hero-right{min-height:280px}
+  .hero-monogram{font-size:180px}
+  .categories{padding:60px 24px}
+  .section-title{font-size:36px}
+  .cat-grid{grid-template-columns:repeat(2,1fr)}
+  .aboutus{grid-template-columns:1fr;padding:60px 24px;gap:40px}
+  .about-quote{font-size:32px}
+  .pillars{padding:60px 24px}
+  .pillars-grid{grid-template-columns:1fr}
+  .connect{padding:60px 24px}
+  .connect-inner{grid-template-columns:1fr;gap:40px}
+  .connect-title{font-size:34px}
+  footer{padding:48px 24px 0}
+  .footer-top{grid-template-columns:1fr;gap:36px}
+  .footer-right{grid-template-columns:1fr 1fr}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:10px}
+}
+@media(max-width:480px){
+  .hero-title{font-size:40px}
+  .cat-grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .cat-card{padding:24px 12px}
+  .about-stats{grid-template-columns:1fr 1fr}
+  .footer-right{grid-template-columns:1fr}
+}
+</style>
+
+<nav>
+  <div class="nav-logo">Grandeur</div>
+  <ul class="nav-links">
+    <li><a href="#categories">Shop</a></li>
+    <li><a href="#aboutus">About</a></li>
+    <li><a href="#connect">Connect</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://wa.me/your-number" target="_blank">WhatsApp</a>
+    <a href="https://instagram.com/grandeur" target="_blank">Instagram</a>
+  </div>
+  <div class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#categories" class="mobile-link">Shop</a>
+  <a href="#aboutus" class="mobile-link">About</a>
+  <a href="#connect" class="mobile-link">Connect</a>
+  <a href="https://wa.me/your-number" target="_blank">WhatsApp</a>
+  <a href="https://instagram.com/grandeur" target="_blank">Instagram</a>
+</div>
+
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Men's Luxury — SS 2026</div>
+    <h1 class="hero-title">Dressed in<br><em>quiet</em><br>power.</h1>
+    <p class="hero-desc">Menswear conceived for the man who understands that true style is never loud. Refined pieces, masterful craft, lasting distinction.</p>
+    <div class="hero-cta-row">
+      <button class="btn-primary" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+      <a class="btn-ghost" href="#aboutus">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-monogram">G</div>
+    <div class="hero-badge">
+      <div class="hero-badge-label">Exclusively</div>
+      <div class="hero-badge-val">Men's Wear</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <span class="marquee-item">Free delivery on orders above ₹1,999 <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">New arrivals: SS 2026 <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Premium menswear, unmatched quality <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">DM us on WhatsApp or Instagram <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Easy returns & exchanges <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Free delivery on orders above ₹1,999 <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">New arrivals: SS 2026 <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Premium menswear, unmatched quality <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">DM us on WhatsApp or Instagram <span class="marquee-dot">◆</span></span>
+    <span class="marquee-item">Easy returns & exchanges <span class="marquee-dot">◆</span></span>
+  </div>
+</div>
+
+<section class="categories" id="categories">
+  <div class="section-label">Explore our range</div>
+  <h2 class="section-title">Shop by Category</h2>
+  <div class="cat-grid">
+    <div class="cat-card">
+      <div class="cat-icon-ring"><i class="ti ti-shirt" aria-hidden="true"></i></div>
+      <div class="cat-name">Shirts</div>
+      <div class="cat-count">Formal &amp; Casual</div>
+      <div class="cat-arrow">→</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon-ring">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12l2 7H4L6 4z"/><path d="M4 11v9h16v-9"/><path d="M9 20v-5h6v5"/></svg>
+      </div>
+      <div class="cat-name">Pants</div>
+      <div class="cat-count">Trousers &amp; Chinos</div>
+      <div class="cat-arrow">→</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon-ring"><i class="ti ti-watch" aria-hidden="true"></i></div>
+      <div class="cat-name">Accessories</div>
+      <div class="cat-count">Belts, Wallets &amp; More</div>
+      <div class="cat-arrow">→</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon-ring"><i class="ti ti-droplet" aria-hidden="true"></i></div>
+      <div class="cat-name">Perfumes</div>
+      <div class="cat-count">Signature Fragrances</div>
+      <div class="cat-arrow">→</div>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon-ring"><i class="ti ti-run" aria-hidden="true"></i></div>
+      <div class="cat-name">Sportswear</div>
+      <div class="cat-count">Active &amp; Training</div>
+      <div class="cat-arrow">→</div>
+    </div>
+  </div>
+</section>
+
+<section class="aboutus" id="aboutus">
+  <div class="about-left">
+    <div class="about-quote">"Clothing is the<br><em>silent language</em><br>of who you are."</div>
+  </div>
+  <div class="about-right">
+    <div class="about-eyebrow">About Grandeur</div>
+    <h2 class="about-heading">We don't just sell clothes.<br>We craft your identity.</h2>
+    <p class="about-body">At Grandeur, every piece is built for the modern man who demands more — more quality, more character, more confidence. From sharp formal shirts that command the boardroom to relaxed weekend wear that never compromises on elegance, our range is curated with one goal: to make you look exceptional without even trying.</p>
+    <p class="about-body">We source the finest fabrics, obsess over every stitch and cut, and deliver garments that hold their form and finish season after season. When you wear Grandeur, nothing about your appearance is an afterthought.</p>
+    <div class="about-divider"></div>
+    <div class="about-stats">
+      <div class="stat-item"><div class="stat-num">500+</div><div class="stat-label">Products</div></div>
+      <div class="stat-item"><div class="stat-num">5★</div><div class="stat-label">Quality Rated</div></div>
+      <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Men's Exclusive</div></div>
+      <div class="stat-item"><div class="stat-num">Fast</div><div class="stat-label">Shipping</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pillars">
+  <div class="section-label">Why Grandeur</div>
+  <h2 class="section-title">Built on three promises</h2>
+  <div class="pillars-grid">
+    <div class="pillar">
+      <div class="pillar-num">01</div>
+      <div class="pillar-title">Uncompromising Quality</div>
+      <p class="pillar-text">Every item that carries the Grandeur name passes rigorous quality checks. Premium fabrics, precise stitching, and finishes that hold their form wash after wash — because you deserve clothes that last.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">02</div>
+      <div class="pillar-title">Style That Speaks</div>
+      <p class="pillar-text">Our designs are not trends — they are timeless. Whether it's a crisp formal shirt or a signature fragrance, each Grandeur piece is a deliberate statement of refined masculinity.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-num">03</div>
+      <div class="pillar-title">Made for Every Man</div>
+      <p class="pillar-text">From the executive to the athlete, from the student to the entrepreneur — Grandeur has a range that fits your life. Five categories, one standard of excellence.</p>
+    </div>
+  </div>
+</section>
+
+<section class="connect" id="connect">
+  <div class="connect-inner">
+    <div class="connect-left">
+      <div class="section-label">Stay connected</div>
+      <h2 class="connect-title">Join the<br>Grandeur circle.</h2>
+      <p class="connect-sub">Get first access to new drops, exclusive offers, and style inspiration — directly on WhatsApp or follow us on Instagram for daily looks.</p>
+    </div>
+    <div class="connect-links">
+      <a class="connect-btn" href="https://wa.me/your-number" target="_blank">
+        <div class="connect-btn-icon wa-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.398A9.932 9.932 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.073-1.117l-.292-.174-3.024.847.847-3.025-.191-.31A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+        </div>
+        <div>
+          <div class="connect-btn-label">WhatsApp Group</div>
+          <div class="connect-btn-name">Join our community</div>
+        </div>
+        <div class="connect-btn-arrow">→</div>
+      </a>
+      <a class="connect-btn" href="https://instagram.com/grandeur" target="_blank">
+        <div class="connect-btn-icon ig-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </div>
+        <div>
+          <div class="connect-btn-label">Instagram</div>
+          <div class="connect-btn-name">@grandeur</div>
+        </div>
+        <div class="connect-btn-arrow">→</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">Grandeur</div>
+      <div class="footer-tagline">Premium menswear crafted for the man who refuses to settle. Quality you can see. Confidence you can feel.</div>
+      <div class="footer-contact-item"><i class="ti ti-map-pin"></i><span>Hubballi, Karnataka, India</span></div>
+      <div class="footer-contact-item"><i class="ti ti-phone"></i><span>+91 XXXXX XXXXX</span></div>
+      <div class="footer-contact-item"><i class="ti ti-brand-whatsapp"></i><a href="https://wa.me/your-number" target="_blank">Chat with us on WhatsApp</a></div>
+      <div class="footer-contact-item"><i class="ti ti-brand-instagram"></i><a href="https://instagram.com/grandeur" target="_blank">@grandeur</a></div>
+    </div>
+    <div class="footer-right">
+      <div>
+        <div class="footer-col-title">Owner</div>
+        <div class="footer-info-item">
+          <div class="footer-info-label">Founded by</div>
+          <div class="footer-info-val">Your Name Here</div>
+        </div>
+        <div class="footer-info-item">
+          <div class="footer-info-label">Location</div>
+          <div class="footer-info-val">Hubballi, Karnataka</div>
+        </div>
+        <div class="footer-info-item">
+          <div class="footer-info-label">WhatsApp</div>
+          <div class="footer-info-val">+91 XXXXX XXXXX</div>
+        </div>
+        <div class="footer-info-item">
+          <div class="footer-info-label">Instagram</div>
+          <div class="footer-info-val">@grandeur</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Tech Support</div>
+        <div class="footer-info-item">
+          <div class="footer-info-label">Website by</div>
+          <div class="footer-info-val">Your Name Here</div>
+        </div>
+        <div style="margin-top:32px">
+          <div class="footer-col-title">Follow</div>
+          <div class="footer-social" style="margin-top:0">
+            <a href="https://wa.me/your-number" target="_blank" aria-label="WhatsApp">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.985-1.398A9.932 9.932 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.073-1.117l-.292-.174-3.024.847.847-3.025-.191-.31A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"/></svg>
+            </a>
+            <a href="https://instagram.com/grandeur" target="_blank" aria-label="Instagram">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 Grandeur Men's Wear. All rights reserved.</span>
+    <span class="footer-tech">Tech: Your Name Here</span>
+  </div>
+</footer>
+
+<script>
+const ham = document.getElementById('hamburger');
+const menu = document.getElementById('mobileMenu');
+const close = document.getElementById('mobileClose');
+ham.addEventListener('click', () => menu.classList.add('open'));
+close.addEventListener('click', () => menu.classList.remove('open'));
+document.querySelectorAll('.mobile-link').forEach(a => {
+  a.addEventListener('click', () => menu.classList.remove('open'));
+});
+</script>
